@@ -44,6 +44,37 @@ const DATA = {
     },
   ],
 
+  // Shared Vertical Context (BAU extension)
+  sharedVertical: {
+    title: 'Shared Vertical Focus: Software / SaaS + Construction',
+    vertical: 'Software / SaaS serving Construction',
+    owner: 'Anthony',
+    status: 'Active GTM',
+    description: 'Focus on Software/SaaS vendors operating in the Construction ecosystem, leveraging shared construction narratives and partner-led credibility.',
+
+    gtmPartner: {
+      name: 'FullClarity',
+      badge: 'SuiteCloud Partner',
+      role: 'Joint GTM / Industry Credibility',
+      customersSigned: 2,
+      note: 'Joint GTM accelerates credibility and reduces early-cycle friction.',
+    },
+
+    enablement: [
+      'Fusion5 team committed to implementation training',
+      'Solution complexity: light / manageable',
+      'Objective: reduce dependency on partner over time',
+    ],
+
+    industryAlliances: [
+      'Oracle Industry Alliances',
+      'Master Builders (Construction)',
+      'AAAA (Australian Automotive Aftermarket Association)',
+    ],
+
+    framingStatement: 'This vertical is treated as BAU once credibility is established; partner leverage accelerates time-to-scale.',
+  },
+
   // Activity Summary
   activitySummary: [
     {
@@ -266,6 +297,7 @@ function RepTable() {
 
 function BAUMotionCard({ motion, isOpen, onToggle }) {
   const [showPartners, setShowPartners] = useState(false)
+  const [showVerticalContext, setShowVerticalContext] = useState(false)
   const confidenceClass = motion.confidence.toLowerCase().replace(/[^a-z]/g, '')
   const motionClass = `motion-${motion.tag.toLowerCase()}`
 
@@ -308,6 +340,9 @@ function BAUMotionCard({ motion, isOpen, onToggle }) {
         <button className="details-toggle" onClick={() => setShowPartners(!showPartners)}>
           {showPartners ? 'Hide Partners' : 'Selection Partners'}
         </button>
+        <button className="details-toggle" onClick={() => setShowVerticalContext(!showVerticalContext)}>
+          {showVerticalContext ? 'Hide Vertical Context' : 'Software/SaaS Vertical'}
+        </button>
       </div>
 
       {isOpen && (
@@ -340,6 +375,71 @@ function BAUMotionCard({ motion, isOpen, onToggle }) {
             ))}
           </div>
           <p className="partners-note">Selection partners form part of BAU pipeline, not a separate motion.</p>
+        </div>
+      )}
+
+      {showVerticalContext && (
+        <div className="vertical-context-panel">
+          <p className="panel-title">{DATA.sharedVertical.title}</p>
+
+          {/* Vertical Positioning Block */}
+          <div className="vertical-positioning">
+            <div className="vertical-info-grid">
+              <div className="vertical-info-item">
+                <span className="info-label">Vertical</span>
+                <span className="info-value">{DATA.sharedVertical.vertical}</span>
+              </div>
+              <div className="vertical-info-item">
+                <span className="info-label">Owner</span>
+                <span className="info-value">{DATA.sharedVertical.owner}</span>
+              </div>
+              <div className="vertical-info-item">
+                <span className="info-label">Status</span>
+                <span className="info-value status-active">{DATA.sharedVertical.status}</span>
+              </div>
+            </div>
+            <p className="vertical-description">{DATA.sharedVertical.description}</p>
+          </div>
+
+          {/* FullClarity Partner - Highlighted */}
+          <div className="gtm-partner-highlight">
+            <div className="gtm-partner-header">
+              <div className="gtm-partner-title">
+                <span className="gtm-partner-name">{DATA.sharedVertical.gtmPartner.name}</span>
+                <span className="gtm-partner-badge">{DATA.sharedVertical.gtmPartner.badge}</span>
+              </div>
+              <span className="gtm-partner-role">{DATA.sharedVertical.gtmPartner.role}</span>
+            </div>
+            <div className="gtm-partner-status">
+              <span className="status-indicator">{DATA.sharedVertical.gtmPartner.customersSigned} Fusion5 customers already signed</span>
+              <span className="status-detail">Borrowing partner credibility while Fusion5 builds deeper reference base</span>
+            </div>
+            <p className="gtm-partner-note">{DATA.sharedVertical.gtmPartner.note}</p>
+          </div>
+
+          {/* Enablement Commitment */}
+          <div className="enablement-block">
+            <p className="enablement-title">Enablement Commitment</p>
+            <ul className="enablement-checklist">
+              {DATA.sharedVertical.enablement.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Industry Alliances */}
+          <div className="industry-leverage">
+            <p className="industry-leverage-title">Industry Leverage</p>
+            <div className="industry-pills">
+              {DATA.sharedVertical.industryAlliances.map((alliance, i) => (
+                <span key={i} className="industry-pill">{alliance}</span>
+              ))}
+            </div>
+            <p className="industry-leverage-desc">Industry bodies used for access, credibility, and co-marketed demand generation.</p>
+          </div>
+
+          {/* Framing Statement */}
+          <div className="framing-statement">{DATA.sharedVertical.framingStatement}</div>
         </div>
       )}
     </div>

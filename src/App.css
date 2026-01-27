@@ -668,6 +668,222 @@
 }
 
 /* ============================================================================
+   VERTICAL CONTEXT PANEL
+   ============================================================================ */
+.vertical-context-panel {
+  margin-top: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--f5-border);
+}
+
+.vertical-positioning {
+  background: var(--f5-bg);
+  border: 1px solid var(--f5-border);
+  border-radius: var(--f5-radius-sm);
+  padding: 0.875rem;
+  margin-bottom: 0.875rem;
+}
+
+.vertical-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.vertical-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.info-label {
+  font-size: 0.625rem;
+  color: var(--f5-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-weight: 600;
+}
+
+.info-value {
+  font-size: 0.8125rem;
+  color: var(--f5-charcoal);
+  font-weight: 600;
+}
+
+.status-active {
+  color: var(--f5-purple);
+}
+
+.vertical-description {
+  font-size: 0.75rem;
+  color: var(--f5-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* GTM Partner Highlight */
+.gtm-partner-highlight {
+  background: var(--f5-purple-light);
+  border: 2px solid var(--f5-purple);
+  border-radius: var(--f5-radius-sm);
+  padding: 0.875rem;
+  margin-bottom: 0.875rem;
+}
+
+.gtm-partner-header {
+  margin-bottom: 0.625rem;
+}
+
+.gtm-partner-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.gtm-partner-name {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--f5-charcoal);
+}
+
+.gtm-partner-badge {
+  font-size: 0.625rem;
+  background-color: var(--f5-purple);
+  color: #ffffff;
+  padding: 0.1875rem 0.5rem;
+  border-radius: var(--f5-radius-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.gtm-partner-role {
+  font-size: 0.6875rem;
+  color: var(--f5-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.gtm-partner-status {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.625rem;
+}
+
+.status-indicator {
+  font-size: 0.75rem;
+  color: var(--f5-purple);
+  font-weight: 600;
+}
+
+.status-detail {
+  font-size: 0.75rem;
+  color: var(--f5-muted);
+  line-height: 1.4;
+}
+
+.gtm-partner-note {
+  font-size: 0.6875rem;
+  color: var(--f5-muted);
+  font-style: italic;
+  margin: 0;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--f5-border);
+}
+
+/* Enablement Block */
+.enablement-block {
+  background: var(--f5-bg);
+  border: 1px solid var(--f5-border);
+  border-radius: var(--f5-radius-sm);
+  padding: 0.875rem;
+  margin-bottom: 0.875rem;
+}
+
+.enablement-title {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--f5-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin: 0 0 0.5rem 0;
+}
+
+.enablement-checklist {
+  margin: 0;
+  padding-left: 1.125rem;
+  font-size: 0.75rem;
+  color: var(--f5-muted);
+  line-height: 1.6;
+}
+
+.enablement-checklist li {
+  margin-bottom: 0.25rem;
+}
+
+.enablement-checklist li:last-child {
+  margin-bottom: 0;
+}
+
+/* Industry Leverage */
+.industry-leverage {
+  background: var(--f5-bg);
+  border: 1px solid var(--f5-border);
+  border-radius: var(--f5-radius-sm);
+  padding: 0.875rem;
+  margin-bottom: 0.875rem;
+}
+
+.industry-leverage-title {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--f5-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin: 0 0 0.5rem 0;
+}
+
+.industry-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-bottom: 0.625rem;
+}
+
+.industry-pill {
+  font-size: 0.6875rem;
+  background-color: var(--f5-card);
+  color: var(--f5-charcoal);
+  padding: 0.3125rem 0.625rem;
+  border-radius: var(--f5-radius-sm);
+  border: 1px solid var(--f5-border);
+  font-weight: 500;
+}
+
+.industry-leverage-desc {
+  font-size: 0.75rem;
+  color: var(--f5-muted);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Framing Statement */
+.framing-statement {
+  font-size: 0.8125rem;
+  color: var(--f5-muted);
+  line-height: 1.5;
+  padding: 0.75rem;
+  background: var(--f5-bg);
+  border-left: 3px solid var(--f5-purple);
+  border-radius: var(--f5-radius-sm);
+  font-weight: 500;
+}
+
+/* ============================================================================
    RESPONSIVE
    ============================================================================ */
 @media (max-width: 1200px) {
@@ -712,6 +928,10 @@
   }
 
   .pipeline-outputs {
+    grid-template-columns: 1fr;
+  }
+
+  .vertical-info-grid {
     grid-template-columns: 1fr;
   }
 }

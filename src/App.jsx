@@ -318,54 +318,6 @@ function KPIRow() {
   )
 }
 
-function RepTable() {
-  return (
-    <section className="section">
-      <h2 className="section-title">Targets by Rep</h2>
-      <table className="rep-table">
-        <thead>
-          <tr>
-            <th>Rep</th>
-            <th>NetSuite Margin</th>
-            <th>Add-ons Margin</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          {DATA.reps.map((rep) => (
-            <tr key={rep.name}>
-              <td>{rep.name}</td>
-              <td title={formatAUD(DATA.perRep.netsuiteMargin)}>
-                {formatShort(DATA.perRep.netsuiteMargin)}
-              </td>
-              <td title={formatAUD(DATA.perRep.addonsMargin)}>
-                {formatShort(DATA.perRep.addonsMargin)}
-              </td>
-              <td title={formatAUD(perRepTotal)}>
-                {formatShort(perRepTotal)}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-        <tfoot>
-          <tr>
-            <td>Total</td>
-            <td title={formatAUD(totalNetsuiteMargin)}>
-              {formatShort(totalNetsuiteMargin)}
-            </td>
-            <td title={formatAUD(totalAddonsMargin)}>
-              {formatShort(totalAddonsMargin)}
-            </td>
-            <td title={formatAUD(totalMargin)}>
-              {formatShort(totalMargin)}
-            </td>
-          </tr>
-        </tfoot>
-      </table>
-    </section>
-  )
-}
-
 function BAUMotionCard({ motion, isOpen, onToggle }) {
   const [showPartners, setShowPartners] = useState(false)
   const [showVerticalContext, setShowVerticalContext] = useState(false)
@@ -921,25 +873,65 @@ function PipelineVsTarget({ pipelineData, loadStatus, winRate }) {
 
       {/* Circular Progress Visualizations - Pipeline Coverage */}
       <div className="pipeline-coverage-section">
-        <h3 className="pipeline-coverage-title">
-          Pipeline Coverage, assuming {winRate}% win rate
-        </h3>
+        <div className="pipeline-coverage-header">
+          <h3 className="pipeline-coverage-title">Pipeline Coverage Analysis</h3>
+          <p className="pipeline-coverage-description">
+            Based on a <strong>{winRate}% win rate</strong>, each rep needs <strong>{formatShort(tonyRequiredPipeline)}</strong> in qualified pipeline
+            to hit their <strong>{formatShort(tonyTarget)}</strong> target. Combined required pipeline: <strong>{formatShort(combinedRequiredPipeline)}</strong>
+          </p>
+        </div>
         <div className="pipeline-circles">
-          <CircularProgress
-            percent={tonyCoveragePercent}
-            label="Tony Goh"
-            value={`${formatShort(tonyPipeline)} / ${formatShort(tonyRequiredPipeline)}`}
-          />
-          <CircularProgress
-            percent={anthonyCoveragePercent}
-            label="Anthony Najafian"
-            value={`${formatShort(anthonyPipeline)} / ${formatShort(anthonyRequiredPipeline)}`}
-          />
-          <CircularProgress
-            percent={combinedCoveragePercent}
-            label="Combined Total"
-            value={`${formatShort(combinedPipeline)} / ${formatShort(combinedRequiredPipeline)}`}
-          />
+          <div className="circular-progress-wrapper">
+            <CircularProgress
+              percent={tonyCoveragePercent}
+              label="Tony Goh"
+              value={`${formatShort(tonyPipeline)} / ${formatShort(tonyRequiredPipeline)}`}
+            />
+            <div className="coverage-metrics">
+              <div className="coverage-metric-item">
+                <span className="coverage-metric-label">Current Pipeline</span>
+                <span className="coverage-metric-value">{formatShort(tonyPipeline)}</span>
+              </div>
+              <div className="coverage-metric-item">
+                <span className="coverage-metric-label">Required Pipeline</span>
+                <span className="coverage-metric-value coverage-required">{formatShort(tonyRequiredPipeline)}</span>
+              </div>
+            </div>
+          </div>
+          <div className="circular-progress-wrapper">
+            <CircularProgress
+              percent={anthonyCoveragePercent}
+              label="Anthony Najafian"
+              value={`${formatShort(anthonyPipeline)} / ${formatShort(anthonyRequiredPipeline)}`}
+            />
+            <div className="coverage-metrics">
+              <div className="coverage-metric-item">
+                <span className="coverage-metric-label">Current Pipeline</span>
+                <span className="coverage-metric-value">{formatShort(anthonyPipeline)}</span>
+              </div>
+              <div className="coverage-metric-item">
+                <span className="coverage-metric-label">Required Pipeline</span>
+                <span className="coverage-metric-value coverage-required">{formatShort(anthonyRequiredPipeline)}</span>
+              </div>
+            </div>
+          </div>
+          <div className="circular-progress-wrapper">
+            <CircularProgress
+              percent={combinedCoveragePercent}
+              label="Combined Total"
+              value={`${formatShort(combinedPipeline)} / ${formatShort(combinedRequiredPipeline)}`}
+            />
+            <div className="coverage-metrics">
+              <div className="coverage-metric-item">
+                <span className="coverage-metric-label">Current Pipeline</span>
+                <span className="coverage-metric-value">{formatShort(combinedPipeline)}</span>
+              </div>
+              <div className="coverage-metric-item">
+                <span className="coverage-metric-label">Required Pipeline</span>
+                <span className="coverage-metric-value coverage-required">{formatShort(combinedRequiredPipeline)}</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1009,7 +1001,6 @@ function App() {
       <main className="dashboard-content">
         <KPIRow />
         <PipelineVsTarget pipelineData={pipelineData} loadStatus={loadStatus} winRate={winRate} />
-        <RepTable />
         <Motions />
         <ActivitySummary />
         <TalkTrack />

@@ -850,12 +850,31 @@
   margin-top: 2rem;
 }
 
+.pipeline-coverage-header {
+  background: var(--f5-bg);
+  border: 2px solid var(--f5-purple);
+  border-radius: var(--f5-radius);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
 .pipeline-coverage-title {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.125rem;
+  font-weight: 700;
   color: var(--f5-charcoal);
-  margin: 0 0 1rem 0;
-  text-align: center;
+  margin: 0 0 0.625rem 0;
+}
+
+.pipeline-coverage-description {
+  font-size: 0.875rem;
+  color: var(--f5-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.pipeline-coverage-description strong {
+  color: var(--f5-purple);
+  font-weight: 600;
 }
 
 .pipeline-circles {
@@ -867,6 +886,13 @@
   border: 1px solid var(--f5-border);
   border-radius: var(--f5-radius);
   box-shadow: var(--f5-shadow);
+}
+
+.circular-progress-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
 .circular-progress {
@@ -906,6 +932,50 @@
   font-size: 0.75rem;
   color: var(--f5-muted);
   text-align: center;
+}
+
+.coverage-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--f5-bg);
+  border: 1px solid var(--f5-border);
+  border-radius: var(--f5-radius-sm);
+}
+
+.coverage-metric-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.25rem 0;
+}
+
+.coverage-metric-label {
+  font-size: 0.6875rem;
+  color: var(--f5-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-weight: 600;
+}
+
+.coverage-metric-value {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--f5-charcoal);
+}
+
+.coverage-required {
+  color: var(--f5-purple);
+}
+
+.coverage-positive {
+  color: #2e7d32;
+}
+
+.coverage-negative {
+  color: #d32f2f;
 }
 
 /* ============================================================================
@@ -1152,7 +1222,7 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .pipeline-circles .circular-progress:last-child {
+  .pipeline-circles .circular-progress-wrapper:last-child {
     grid-column: 1 / -1;
   }
 }
@@ -1205,7 +1275,19 @@
     gap: 1.5rem;
   }
 
-  .pipeline-circles .circular-progress:last-child {
+  .pipeline-circles .circular-progress-wrapper:last-child {
     grid-column: auto;
+  }
+
+  .pipeline-coverage-header {
+    padding: 1rem;
+  }
+
+  .pipeline-coverage-title {
+    font-size: 1rem;
+  }
+
+  .pipeline-coverage-description {
+    font-size: 0.8125rem;
   }
 }

@@ -153,9 +153,8 @@ const DATA = {
 
   // Pipeline defaults
   pipelineDefaults: {
-    winRate: 25,
-    avgNetsuiteMarginPerWin: 275000,
-    coverageRatio: 3.0,
+    winRate: 30,
+    avgNetsuiteMarginPerWin: 60000,
   },
 }
 
@@ -561,10 +560,9 @@ function PipelineAssumptions() {
   const [isOpen, setIsOpen] = useState(false)
   const [winRate, setWinRate] = useState(DATA.pipelineDefaults.winRate)
   const [avgMargin, setAvgMargin] = useState(DATA.pipelineDefaults.avgNetsuiteMarginPerWin)
-  const [coverage, setCoverage] = useState(DATA.pipelineDefaults.coverageRatio)
 
   const requiredPipeline = totalNetsuiteMargin / (winRate / 100)
-  const coveragePipelineTarget = requiredPipeline * coverage
+  const dealsRequired = Math.round(totalNetsuiteMargin / avgMargin)
 
   return (
     <section className="section">
@@ -574,7 +572,7 @@ function PipelineAssumptions() {
 
       {isOpen && (
         <div className="pipeline-panel">
-          <p className="assumptions-label">Working assumptions</p>
+          <p className="assumptions-label">Pipeline Working Assumptions (Win-rate based)</p>
 
           <div className="pipeline-inputs">
             <label>
@@ -595,28 +593,18 @@ function PipelineAssumptions() {
                 onChange={(e) => setAvgMargin(Number(e.target.value) || 0)}
               />
             </label>
-            <label>
-              <span>Coverage ratio</span>
-              <input
-                type="number"
-                value={coverage}
-                onChange={(e) => setCoverage(Number(e.target.value) || 0)}
-                step="0.1"
-                min="1"
-              />
-            </label>
           </div>
 
           <div className="pipeline-outputs">
             <div className="pipeline-output">
-              <span className="output-label">Required pipeline margin</span>
+              <span className="output-label">Required Qualified Pipeline</span>
               <span className="output-value">{formatShort(requiredPipeline)}</span>
-              <span className="output-detail">NetSuite target / win rate</span>
+              <span className="output-detail">NetSuite target ÷ win rate</span>
             </div>
             <div className="pipeline-output">
-              <span className="output-label">Coverage pipeline target</span>
-              <span className="output-value">{formatShort(coveragePipelineTarget)}</span>
-              <span className="output-detail">Required pipeline x coverage ratio</span>
+              <span className="output-label">Deals required (approx.)</span>
+              <span className="output-value">{dealsRequired}</span>
+              <span className="output-detail">Target ÷ avg margin per win</span>
             </div>
           </div>
         </div>

@@ -213,16 +213,6 @@ const DATA = {
     },
   ],
 
-  // Talk track timestamps
-  talkTrack: [
-    { time: '0:00', point: 'Targets + capacity (2 reps, $1.35M total)' },
-    { time: '1:00', point: 'What we track (margin only)' },
-    { time: '2:00', point: 'BAU engine (Construction anchor)' },
-    { time: '4:00', point: 'Vendor acceleration (attach motion)' },
-    { time: '5:30', point: 'PE upside (optional)' },
-    { time: '6:30', point: 'Close / move on' },
-  ],
-
   // Pipeline defaults
   pipelineDefaults: {
     winRate: 30,
@@ -564,22 +554,6 @@ function ActivitySummary() {
                 ))}
               </div>
             )}
-          </div>
-        ))}
-      </div>
-    </section>
-  )
-}
-
-function TalkTrack() {
-  return (
-    <section className="section">
-      <h2 className="section-title">Talk Track</h2>
-      <div className="talk-track">
-        {DATA.talkTrack.map((item, i) => (
-          <div key={i} className="talk-track-item">
-            <span className="talk-time">{item.time}</span>
-            <span className="talk-point">{item.point}</span>
           </div>
         ))}
       </div>
@@ -1003,7 +977,6 @@ function App() {
         <PipelineVsTarget pipelineData={pipelineData} loadStatus={loadStatus} winRate={winRate} />
         <Motions />
         <ActivitySummary />
-        <TalkTrack />
         <PipelineAssumptions winRate={winRate} setWinRate={setWinRate} />
       </main>
     </div>

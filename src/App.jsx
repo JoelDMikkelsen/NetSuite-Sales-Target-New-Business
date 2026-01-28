@@ -329,7 +329,9 @@ function BAUMotionCard({ motion, isOpen, onToggle }) {
       </div>
 
       <div className="weight-bar-container">
-        <div className="weight-bar" style={{ width: `${motion.weight}%` }}></div>
+        <div className="weight-bar-track">
+          <div className="weight-bar" style={{ width: `${motion.weight}%` }}></div>
+        </div>
         <span className="weight-label">{motion.weight}%</span>
       </div>
 
@@ -485,7 +487,9 @@ function MotionCard({ motion, isOpen, onToggle }) {
       </div>
 
       <div className="weight-bar-container">
-        <div className="weight-bar" style={{ width: `${motion.weight}%` }}></div>
+        <div className="weight-bar-track">
+          <div className="weight-bar" style={{ width: `${motion.weight}%` }}></div>
+        </div>
         <span className="weight-label">{motion.weight}%</span>
       </div>
 
